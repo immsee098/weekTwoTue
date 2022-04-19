@@ -14,7 +14,10 @@ public class YourHandler {
 
     public Mono<ServerResponse> myjob(ServerRequest req) {
         HashMap rmap = new HashMap();
-        rmap.put("job", "test");
+        String name = req.queryParam("name").get();
+        rmap.put("to", name);
+        rmap.put("message", "hello "+name);
+        rmap.put("job", name+"'s job");
 
         return ServerResponse
                 .ok()
